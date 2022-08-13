@@ -66,7 +66,9 @@ def custom_extend(input_list, second_list):
         True
 
     """
-
+    
+    for item in second_list:
+        input_list.append(item)
     pass
 
 
@@ -84,6 +86,7 @@ def custom_insert(input_list, index, value):
         True
 
     """
+    input_list[index:index] = [value]
 
     pass
 
@@ -103,7 +106,8 @@ def custom_remove(input_list, value):
         True
 
     """
-
+    index_of_value = input_list.index(value)
+    del input_list[index_of_value]
     pass
 
 
@@ -122,8 +126,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    deleted_item = input_list[-1]
+    del input_list[-1]
+    return deleted_item
 
 
 def custom_index(input_list, value):
@@ -138,8 +143,13 @@ def custom_index(input_list, value):
         1
 
     """
-
-    return 0
+    first_index = None
+    for i, item in enumerate(input_list):
+        if item == value:
+            first_index = i
+            break
+    return first_index
+    
 
 
 def custom_count(input_list, value):
@@ -154,8 +164,13 @@ def custom_count(input_list, value):
         2
 
     """
+    counter = 0
+    for item in input_list:
+        if item == value:
+            counter += 1
 
-    return 0
+
+    return counter
 
 
 def custom_reverse(input_list):
@@ -173,7 +188,9 @@ def custom_reverse(input_list):
         True
 
     """
-
+    
+    input_list[0:] = input_list[::-1]
+    
     pass
 
 
@@ -193,8 +210,13 @@ def custom_contains(input_list, value):
         True
 
     """
+    var = False
+    for item in input_list:
+        if item == value:
+            var = True
+        
 
-    return None
+    return var
 
 
 def custom_equality(some_list, another_list):
@@ -213,4 +235,13 @@ def custom_equality(some_list, another_list):
 
     """
 
-    return None
+    if len(some_list) != len(another_list):
+        return False
+    else:
+        var = True
+        for i, item in enumerate(some_list):
+            if item != another_list[i]:
+                var = False
+                break
+        
+        return var
